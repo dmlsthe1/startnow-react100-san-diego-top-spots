@@ -1,3 +1,5 @@
+const axios = require("axios");
+import TopSpot from "./topspot.jsx";
 import React, { Component } from 'react';
 
 class App extends Component {
@@ -8,23 +10,27 @@ class App extends Component {
     }
   }
 
+  componentWillMount(){
+    axios.get("https://origin-top-spots-api.herokuapp.com/api/topspots")
+      .then(response => response.data)
+      .then(topspots => this.setState({topspots}));
+  }
+
   render() {
     return (
-      <div className='App'>
-        <div className="py-5">
-          <div className="container transpar">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="card border border-dark">
-                  <div className="card-body">
-                    <h4>San Diego Top Spots</h4>
-                    <p className="py-1">A list of the top 30 places to see in San Diego, California.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div className='App container'>
+          <div className="jumbotron">
+            <h1 className="display-3">San Diego Top Spots</h1>
+            <p className="lead">A list of the top 30 places to see in San Diego, California.</p> 
           </div>
-        </div>
+          {this.state.topspots.map(topspot =>
+            <TopSpot 
+              key={topspot.id}
+              name={topspot.name}
+              description={topspot.description}
+              location={topspot.location}
+              handleClick={this.handleClick}
+            />)}
       </div>
     );
   }
