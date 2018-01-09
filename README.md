@@ -1,3 +1,19 @@
-1) npm install
-2) npm start
-3) enjoy the list of San Diego's top tourist spots with link to location on google maps
+# San Diego Top Spots
+
+A list of San Diego's top tourist spots with link to location on google maps
+
+## Setup
+
+```
+npm install
+```
+```
+npm run build
+```
+```
+npm start
+```
+
+## Contributing
+
+* Open a pull request, all contributions will be considered.
